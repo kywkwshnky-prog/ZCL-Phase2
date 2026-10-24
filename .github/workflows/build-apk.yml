@@ -1,0 +1,22 @@
+
+name: Build APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download project
+        uses: actions/checkout@v4
+
+      - name: Unzip project
+        run: |
+          unzip -o ZCL-build-ready.zip -d project
+          ls -la project
+
+      - name: Find Android project
+        run: |
+          find project -name gradlew -type f
+          find project -name pubspec.yaml -type f
